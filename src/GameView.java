@@ -20,11 +20,23 @@ public class GameView {
 		mainFrame.add(buttonPanel);
 	}
 
-	void placeButtonMark(int[] pos, Character mark) {
+	public void placeButtonMark(int[] pos, Character mark) {
 		int row = pos[0], col = pos[1];
 		JButton btn = buttons[row][col];
 		btn.setForeground(new Color(255, 0, 0));
 		btn.setText(mark + "");
+	}
+	
+	public void toggleButtons() {
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				JButton btn = buttons[i][j];
+				if(btn.isEnabled())
+					btn.setEnabled(false);
+				else
+					btn.setEnabled(true);
+			}
+		}
 	}
 
 	public JButton[][] getButtons() {
