@@ -49,7 +49,7 @@ public class Board {
 		
 	    private Character checkRowWinner(){
 	       for(int i = 0; i < 3; i++){
-	         if(rows[i][0] == rows[i][1] && rows[i][1] == rows[i][2] && !isEmpty(new int [] {i, 0}))
+	         if(rows[i][0].equals(rows[i][1]) && rows[i][1].equals(rows[i][2]) && !isEmpty(new int [] {i, 0}))
 	        	 return rows[i][0];
 	       }
 	        return '-';
@@ -57,15 +57,15 @@ public class Board {
 
 	    private Character checkColWinner(){
 	       for(int i = 0; i < 3; i++){
-	         if(rows[0][i] == rows[1][i] && rows[1][i] == rows[2][i] && !isEmpty(new int [] {0, i}))
+	         if(rows[0][i].equals(rows[1][i]) && rows[1][i].equals(rows[2][i]) && !isEmpty(new int [] {0, i}))
 	        	 return rows[0][i];
 	        }
 	        return '-';
 	    }
 
 	   private Character checkDiagWinner(){
-	       boolean leftDiagWinner = (rows[1][1] == rows[0][0] && rows[1][1] == rows[2][2]);
-	       boolean rightDiagWinner = (rows[1][1] == rows[0][2] && rows[1][1] == rows[2][0]);
+	       boolean leftDiagWinner = (rows[1][1].equals(rows[0][0]) && rows[1][1].equals(rows[2][2]));
+	       boolean rightDiagWinner = (rows[1][1].equals(rows[0][2]) && rows[1][1].equals(rows[2][0]));
 	       int [] centerPos = new int[] {1, 1};
 	       
 	       if (!isEmpty(centerPos)) {
