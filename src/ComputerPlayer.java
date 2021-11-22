@@ -6,6 +6,10 @@ public class ComputerPlayer extends Player{  // dummy computer, looks if Only ne
 		super(name);
 	}
 	
+	public ComputerPlayer(){
+		super("dummy computer");
+	}
+	
 	public int [] move(Game game, Character mark) {
 		int [] nextMove = winnerMove(game, mark);
 		if(nextMove[0] != -1)
