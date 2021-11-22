@@ -23,7 +23,7 @@ public class GameController {
     }
 	
 	private void placeMark(int [] btnPos) {
-		if(game.placeBoardMark(btnPos) && game.currentPlayer() instanceof HumanPlayer) {
+		if(game.placeBoardMark(btnPos)) {
 			view.placeButtonMark(btnPos, game.turn);
 			swapTurns();
 		}
@@ -34,8 +34,8 @@ public class GameController {
 	}
 	
 	private void run() {
-		displayTurn();
 		while(!game.isOver()) {
+			displayTurn();
 			if(!(game.currentPlayer() instanceof HumanPlayer)) 
 				playComputerTurn();
 		}
@@ -47,14 +47,16 @@ public class GameController {
 	    else {
 	        view.viewText("No one wins!");
 	    }
+		view.toggleButtons();
 	}
 	
 	void swapTurns() {
 	    game.swap();
-	    displayTurn();
 	}
 
 	private void playComputerTurn(){  
+		// disable humanPlayer from clicking buttons while its computer's turn
+		view.toggleButtons();
 		try {                                    
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -63,7 +65,8 @@ public class GameController {
 		    }
         int [] pos = game.getMove(); 
         if(game.placeBoardMark(pos))         
-        	view.placeButtonMark(pos, game.turn);     
+        	view.placeButtonMark(pos, game.turn);  
+        view.toggleButtons();
         swapTurns();                        
 	}
 	
@@ -71,7 +74,7 @@ public class GameController {
 		view.startFrame();
 		view.viewText("Amazing AI Tic Tac Toe!");
 		try {                                    
-			Thread.sleep(1500);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
 		    return; 
