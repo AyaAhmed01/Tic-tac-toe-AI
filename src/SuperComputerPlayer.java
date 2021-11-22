@@ -4,7 +4,11 @@ public class SuperComputerPlayer extends ComputerPlayer{
 		super(name);
 	} 
 	
-	public int [] move(Game game, Character mark) {
+	public SuperComputerPlayer() {  
+		super("Brilliant computer");
+	} 
+	
+	public int [] move (Game game, Character mark) throws RuntimeException {
 		GameNode currentNode = new GameNode(game.board, mark);
 		boolean moveToTie = false;
 		GameNode tieNode = null;
@@ -21,7 +25,7 @@ public class SuperComputerPlayer extends ComputerPlayer{
 				throw new RuntimeException("Game is Not perfect! you can not win or make a draw");	
 		}
 		catch (RuntimeException e){
-			System.out.println(e);
+			System.out.println(e.getMessage());
             System.exit(0); // Terminate JVM
 		}
 		return tieNode.prevMovePos;

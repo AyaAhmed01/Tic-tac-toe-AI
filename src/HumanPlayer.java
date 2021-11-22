@@ -6,24 +6,29 @@ public class HumanPlayer extends Player{
 		super(name);
 	}
 	
+	public HumanPlayer() {
+		super("aya");
+	}
+	
+	// Below methods for CLI version of app
 	public int [] move(Game game, Character mark) {
-		game.show();
-		Scanner sc = new Scanner(System.in);
-		while(true) {
-			try {
-				System.out.println(name + ", please select your space \"row,col\" i.e 1,1");
-				String inputSpace = sc.nextLine();
-				validInputFormat(inputSpace);               
-				
-				int row = inputSpace.charAt(0) - '0' - 1;  // input is 1 indexed
-				int col = inputSpace.charAt(2) - '0' - 1; 
-				int [] pos = new int[] {row, col};
-				
-				validCoordinates(pos);                 
-				return pos;
-			}
-			catch (IllegalArgumentException e){
-				System.out.println(e);
+		try(Scanner sc = new Scanner(System.in)){
+			while(true) {
+				try {
+					System.out.println(name + ", please select your space \"row,col\" i.e 1,1");
+					String inputSpace = sc.nextLine();
+					validInputFormat(inputSpace);               
+					
+					int row = inputSpace.charAt(0) - '0' - 1;  // input is 1 indexed
+					int col = inputSpace.charAt(2) - '0' - 1; 
+					int [] pos = new int[] {row, col};
+					
+					validCoordinates(pos);                 
+					return pos;
+				}
+				catch (IllegalArgumentException e){
+					System.out.println(e.getMessage());
+				}
 			}
 		}
 	}
